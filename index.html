@@ -3,108 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نُزُل | NOZOL</title>
+<title>نُزُل | Smart Hospitality Interface</title>
 
 <style>
-:root {
-  --gold:#d4af37;
-  --bg:#ffffff;
-  --soft:#fdf6d8;
-}
 body {
-  margin:0;
-  font-family: "Segoe UI", sans-serif;
-  background:var(--bg);
+    margin:0;
+    font-family: "Segoe UI", sans-serif;
+    background:#f7f7f7;
+    direction: rtl;
 }
+
 header {
-  background:linear-gradient(to right,var(--gold),#f5e6a1);
-  padding:15px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  font-size:20px;
-  font-weight:bold;
+    background: linear-gradient(135deg, #c9a24d, #f5e6b8);
+    padding:15px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    color:#333;
 }
-.brand {
-  font-size:22px;
-}
-.icon {
-  cursor:pointer;
-  font-size:22px;
+
+.lang {
+    position:absolute;
+    top:15px;
+    left:15px;
+    background:white;
+    padding:5px 10px;
+    border-radius:20px;
+    cursor:pointer;
 }
 
 .grid {
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:15px;
-  padding:20px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:12px;
+    padding:15px;
 }
+
 .card {
-  border:2px solid var(--gold);
-  border-radius:18px;
-  padding:20px;
-  text-align:center;
-  font-size:18px;
-  cursor:pointer;
-  background:white;
-  transition:transform .2s, box-shadow .2s;
-}
-.card:hover {
-  transform:scale(1.05);
-  box-shadow:0 8px 20px rgba(0,0,0,.15);
+    background:white;
+    border-radius:16px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    transition:transform .2s;
+    cursor:pointer;
 }
 
-.section, .popup {
-  display:none;
-  padding:20px;
-  animation:fade .3s;
-}
-@keyframes fade {
-  from{opacity:0; transform:scale(.95)}
-  to{opacity:1; transform:scale(1)}
+.card:active {
+    transform:scale(0.95);
 }
 
-.back {
-  margin-top:20px;
-  background:var(--gold);
-  color:white;
-  padding:12px;
-  border-radius:12px;
-  text-align:center;
-  cursor:pointer;
+.card span {
+    font-size:30px;
+    display:block;
 }
 
-.floating {
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:red;
-  color:white;
-  padding:15px;
-  border-radius:50%;
-  font-size:22px;
-  cursor:pointer;
+.details {
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    height:70%;
+    background:white;
+    border-radius:20px 20px 0 0;
+    padding:15px;
+    overflow:auto;
+    display:none;
+    animation: slideUp .3s ease;
 }
 
-.popup {
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.popup-content {
-  background:white;
-  padding:25px;
-  border-radius:20px;
-  width:90%;
-  max-width:400px;
+@keyframes slideUp {
+    from {transform:translateY(100%);}
+    to {transform:translateY(0);}
 }
 
-select {
-  padding:10px;
-  font-size:16px;
+.item {
+    background:#fafafa;
+    padding:12px;
+    margin-bottom:10px;
+    border-radius:12px;
+}
+
+.emergency {
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:red;
+    color:white;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    font-size:26px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
 }
 </style>
 </head>
@@ -112,92 +105,65 @@ select {
 <body>
 
 <header>
-  <div class="brand">نُزُل | NOZOL</div>
-  <div>
-    <span class="icon" onclick="toggleLang()">🌍</span>
-    <span class="icon" onclick="openAd()">💡</span>
-    <span class="icon" onclick="goFull()">⛶</span>
-  </div>
+    نُزُل | Smart Hospitality Interface
+    <div class="lang">🌍 AR / EN / FR</div>
 </header>
 
-<div id="langBox" class="section">
-<select onchange="setLang(this.value)">
-<option value="ar">العربية</option>
-<option value="en">English</option>
-<option value="fr">Français</option>
-</select>
-<div class="back" onclick="home()">رجوع</div>
+<div class="grid">
+    <div class="card" onclick="openList('restaurants')"><span>🍽</span>مطاعم</div>
+    <div class="card" onclick="openList('cafes')"><span>☕</span>كافيهات</div>
+    <div class="card" onclick="openList('shops')"><span>🛍</span>محلات</div>
+    <div class="card" onclick="openList('pharmacy')"><span>💊</span>صيدليات</div>
+    <div class="card" onclick="openList('hospital')"><span>🏥</span>مستشفيات</div>
+    <div class="card" onclick="openList('gold')"><span>💍</span>أسواق الذهب</div>
 </div>
 
-<div id="home" class="grid">
-  <div class="card" onclick="openSection('restaurants')">🍽️ مطاعم</div>
-  <div class="card" onclick="openSection('shopping')">🛍️ محلات</div>
-  <div class="card" onclick="openSection('services')">🏥 خدمات عامة</div>
-  <div class="card" onclick="openSection('hotel')">🏨 خدمات الفندق</div>
-</div>
+<div class="details" id="details"></div>
 
-<div id="restaurants" class="section">
-<h2>🍽️ مطاعم قريبة</h2>
-<p><b>Al Baik</b><br>📍 600م | ⏱ 8 دقايق<br>🕒 10ص–2ص</p>
-<p><b>Starbucks Clock Tower</b><br>📍 100م | ⏱ 2 دقايق<br>🕒 24 ساعة</p>
-<div class="back" onclick="home()">رجوع</div>
-</div>
-
-<div id="shopping" class="section">
-<h2>🛍️ محلات</h2>
-<p><b>Clock Tower Mall</b><br>📍 داخل البرج<br>🕒 9ص–12ص</p>
-<p><b>Souvenir Shops</b><br>📍 300م<br>🕒 10ص–11م</p>
-<div class="back" onclick="home()">رجوع</div>
-</div>
-
-<div id="services" class="section">
-<h2>🏥 خدمات عامة</h2>
-<p><b>Ajyad Hospital</b><br>📍 1.2 كم | ⏱ 10 دقائق</p>
-<p><b>Pharmacy 24h</b><br>📍 200م</p>
-<div class="back" onclick="home()">رجوع</div>
-</div>
-
-<div id="hotel" class="section">
-<h2>🏨 خدمات الفندق</h2>
-<p>Room Service – Spa – Laundry – VIP</p>
-<div class="back" onclick="home()">رجوع</div>
-</div>
-
-<div class="floating" onclick="alert('🚑 997 | 🚓 999 | 🚒 998')">🚨</div>
-
-<div id="ad" class="popup" onclick="closeAd()">
-  <div class="popup-content">
-    <h3>⭐ عرض خاص</h3>
-    <p>خصم 20% على مطاعم الفندق اليوم</p>
-    <div class="back">إغلاق</div>
-  </div>
+<div class="emergency" onclick="alert('🚑 إسعاف: 997\n🚓 شرطة: 999\n🔥 مطافي: 998')">
+🆘
 </div>
 
 <script>
-function home(){
-  document.querySelectorAll('.section').forEach(s=>s.style.display='none');
-  document.getElementById('home').style.display='grid';
-}
-function openSection(id){
-  home();
-  document.getElementById('home').style.display='none';
-  document.getElementById(id).style.display='block';
-}
-function toggleLang(){
-  home();
-  document.getElementById('langBox').style.display='block';
-}
-function setLang(l){
-  alert("Language switched to: "+l+" (Demo)");
-}
-function openAd(){
-  document.getElementById('ad').style.display='flex';
-}
-function closeAd(){
-  document.getElementById('ad').style.display='none';
-}
-function goFull(){
-  document.documentElement.requestFullscreen();
+const data = {
+restaurants: [
+ {name:"البيك", type:"وجبات سريعة", dist:"600 م", hours:"24 ساعة", phone:"920002345", menu:"دجاج – جمبري"},
+ {name:"مطعم البيف", type:"سعودي", dist:"1.1 كم", hours:"1م – 12ص", phone:"0551234567", menu:"مندي – كبسة"},
+ {name:"مطعم الشام", type:"سوري", dist:"850 م", hours:"10ص – 2ص", phone:"0549876543", menu:"شاورما – مشاوي"}
+],
+cafes: [
+ {name:"ستاربكس", type:"قهوة عالمية", dist:"400 م", hours:"6ص – 2ص", phone:"—"}
+],
+shops: [
+ {name:"سوق الحجاز", type:"هدايا وملابس", dist:"1.3 كم", hours:"10ص – 11م"}
+],
+pharmacy: [
+ {name:"صيدلية النهدي", type:"أدوية", dist:"300 م", hours:"24 ساعة"}
+],
+hospital: [
+ {name:"مستشفى أجياد", type:"عام", dist:"1.5 كم", hours:"24 ساعة"}
+],
+gold: [
+ {name:"سوق ذهب مكة", type:"ذهب ومجوهرات", dist:"1.8 كم", hours:"9ص – 10م"}
+]
+};
+
+function openList(type){
+    let html = `<h2>📍 نتائج قريبة</h2>`;
+    data[type].forEach(i=>{
+        html += `
+        <div class="item">
+            <b>${i.name}</b><br>
+            النوع: ${i.type}<br>
+            المسافة: ${i.dist}<br>
+            المواعيد: ${i.hours}<br>
+            ${i.menu ? "القائمة: "+i.menu+"<br>" : ""}
+            ${i.phone ? "📞 "+i.phone : ""}
+        </div>`;
+    });
+    const d = document.getElementById("details");
+    d.innerHTML = html;
+    d.style.display="block";
 }
 </script>
 
