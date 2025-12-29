@@ -5,80 +5,97 @@
 <title>نُزُل | Fairmont Clock Tower</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 body{
-    margin:0;
-    font-family:Segoe UI,Tahoma;
-    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    color:#fff;
-    text-align:center;
+margin:0;
+font-family:Segoe UI,Tahoma;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:#fff;
+text-align:center;
 }
+
+.lang{
+position:fixed;
+top:15px;
+left:15px;
+font-size:22px;
+cursor:pointer;
+}
+
 header{
-    padding:25px;
+padding:30px 10px 10px;
 }
 header h1{margin:5px;font-size:26px}
 header h2{margin:5px;font-weight:300}
 .brand{font-size:32px;font-weight:bold;letter-spacing:2px}
 
-.lang{
-    position:fixed;
-    top:20px;
-    left:20px;
-    font-size:20px;
-    cursor:pointer;
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+gap:20px;
+padding:30px;
+max-width:1100px;
+margin:auto;
 }
 
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-    gap:20px;
-    padding:30px;
-    max-width:1000px;
-    margin:auto;
-}
 .card{
-    background:rgba(255,255,255,0.1);
-    border-radius:18px;
-    padding:25px 10px;
-    cursor:pointer;
-    transition:.3s;
+background:rgba(255,255,255,0.1);
+border-radius:18px;
+padding:25px 10px;
+cursor:pointer;
+transition:.3s;
 }
 .card:hover{transform:scale(1.08)}
 .card i{font-size:34px;margin-bottom:10px}
-.card span{display:block;font-size:14px}
+.card span{font-size:14px}
 
-/* Sub screen */
-#sub{
-    position:fixed;
-    inset:0;
-    background:linear-gradient(135deg,#141e30,#243b55);
-    display:none;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+/* overlay */
+.overlay{
+position:fixed;
+inset:0;
+background:linear-gradient(135deg,#141e30,#243b55);
+display:none;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:20px;
 }
-.sub-title{font-size:26px;margin-bottom:25px}
-.sub-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-    gap:18px;
-    width:90%;
-    max-width:900px;
+
+.title{font-size:26px;margin-bottom:20px}
+
+.list{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+width:100%;
+max-width:1000px;
 }
-.sub-card{
-    background:rgba(255,255,255,0.12);
-    border-radius:16px;
-    padding:20px;
-    transition:.3s;
+
+.item{
+background:rgba(255,255,255,0.12);
+border-radius:16px;
+padding:15px;
+cursor:pointer;
+transition:.3s;
 }
-.sub-card:hover{transform:scale(1.05)}
-.sub-card i{font-size:26px;margin-bottom:8px}
+.item:hover{transform:scale(1.05)}
+
+.details{
+margin-top:20px;
+background:rgba(0,0,0,0.3);
+padding:20px;
+border-radius:18px;
+width:100%;
+max-width:600px;
+display:none;
+}
+
 .back{
-    margin-top:30px;
-    font-size:18px;
-    cursor:pointer;
+margin-top:25px;
+cursor:pointer;
+font-size:18px;
 }
 </style>
 </head>
@@ -88,61 +105,124 @@ header h2{margin:5px;font-weight:300}
 <div class="lang" onclick="toggleLang()">🌍</div>
 
 <header>
-    <h1 id="w1">مرحبًا بكم في</h1>
-    <h2 id="w2">فندق فيرمونت برج الساعة</h2>
-    <div class="brand">نُزُل</div>
+<h1 id="t1">مرحبًا بكم في</h1>
+<h2 id="t2">فندق فيرمونت برج الساعة</h2>
+<div class="brand">نُزُل</div>
 </header>
 
 <div class="grid">
-
-<div class="card" onclick="openSub('Restaurants')"><i class="fa-solid fa-utensils"></i><span>مطاعم</span></div>
-<div class="card" onclick="openSub('Health')"><i class="fa-solid fa-hospital"></i><span>صحة</span></div>
-<div class="card" onclick="openSub('Banks')"><i class="fa-solid fa-building-columns"></i><span>بنوك</span></div>
-<div class="card" onclick="openSub('ATMs')"><i class="fa-solid fa-money-bill-wave"></i><span>صرافات</span></div>
-<div class="card" onclick="openSub('Car Rental')"><i class="fa-solid fa-car"></i><span>تأجير سيارات</span></div>
-<div class="card" onclick="openSub('Travel')"><i class="fa-solid fa-plane"></i><span>مكاتب سياحة</span></div>
-<div class="card" onclick="openSub('Shopping')"><i class="fa-solid fa-bag-shopping"></i><span>مولات وأسواق</span></div>
-<div class="card" onclick="openSub('Gold')"><i class="fa-solid fa-gem"></i><span>محلات ذهب</span></div>
-<div class="card" onclick="openSub('Barber')"><i class="fa-solid fa-scissors"></i><span>حلاقين</span></div>
-<div class="card" onclick="openSub('Groceries')"><i class="fa-solid fa-store"></i><span>بقالات</span></div>
-<div class="card" onclick="openSub('Juices')"><i class="fa-solid fa-blender"></i><span>عصائر</span></div>
-<div class="card" onclick="openSub('Transport')"><i class="fa-solid fa-taxi"></i><span>مواصلات</span></div>
-<div class="card" onclick="openSub('Parking')"><i class="fa-solid fa-square-parking"></i><span>مواقف</span></div>
-<div class="card" onclick="openSub('Wellness')"><i class="fa-solid fa-dumbbell"></i><span>نوادي صحية</span></div>
-<div class="card" onclick="openSub('Shipping')"><i class="fa-solid fa-box"></i><span>شحن</span></div>
-<div class="card" onclick="openSub('Security')"><i class="fa-solid fa-shield-halved"></i><span>نقطة أمنية</span></div>
-<div class="card" onclick="openSub('Religious')"><i class="fa-solid fa-mosque"></i><span>إرشاد ديني</span></div>
-<div class="card" onclick="openSub('Holy')"><i class="fa-solid fa-kaaba"></i><span>مزارات مكة</span></div>
-<div class="card" onclick="openSub('Hotel')"><i class="fa-solid fa-hotel"></i><span>خدمات الفندق</span></div>
-
+<div class="card" onclick="openSection('restaurants')"><i class="fa-solid fa-utensils"></i><span>مطاعم</span></div>
+<div class="card" onclick="openSection('health')"><i class="fa-solid fa-hospital"></i><span>الصحة</span></div>
+<div class="card" onclick="openSection('banks')"><i class="fa-solid fa-building-columns"></i><span>بنوك وصرافة</span></div>
+<div class="card" onclick="openSection('transport')"><i class="fa-solid fa-taxi"></i><span>مواصلات</span></div>
+<div class="card" onclick="openSection('shopping')"><i class="fa-solid fa-bag-shopping"></i><span>تسوق</span></div>
+<div class="card" onclick="openSection('hotel')"><i class="fa-solid fa-hotel"></i><span>خدمات الفندق</span></div>
+<div class="card" onclick="openSection('holy')"><i class="fa-solid fa-kaaba"></i><span>مزارات مكة</span></div>
 </div>
 
-<!-- Sub -->
-<div id="sub">
-    <div class="sub-title" id="subTitle"></div>
-    <div class="sub-grid">
-        <div class="sub-card"><i class="fa-solid fa-location-dot"></i><div>خدمة 1</div></div>
-        <div class="sub-card"><i class="fa-solid fa-location-dot"></i><div>خدمة 2</div></div>
-        <div class="sub-card"><i class="fa-solid fa-location-dot"></i><div>خدمة 3</div></div>
-        <div class="sub-card"><i class="fa-solid fa-location-dot"></i><div>خدمة 4</div></div>
-        <div class="sub-card"><i class="fa-solid fa-location-dot"></i><div>خدمة 5</div></div>
-    </div>
-    <div class="back" onclick="closeSub()">⬅ رجوع</div>
+<!-- Overlay -->
+<div class="overlay" id="overlay">
+<div class="title" id="sectionTitle"></div>
+
+<div class="list" id="list"></div>
+
+<div class="details" id="details"></div>
+
+<div class="back" onclick="closeOverlay()">⬅ رجوع</div>
 </div>
 
 <script>
 let ar=true;
+
 function toggleLang(){
-    ar=!ar;
-    document.getElementById("w1").innerText=ar?"مرحبًا بكم في":"Welcome to";
-    document.getElementById("w2").innerText=ar?"فندق فيرمونت برج الساعة":"Fairmont Clock Tower Hotel";
+ar=!ar;
+document.getElementById("t1").innerText=ar?"مرحبًا بكم في":"Welcome to";
+document.getElementById("t2").innerText=ar?"فندق فيرمونت برج الساعة":"Fairmont Clock Tower Hotel";
 }
-function openSub(t){
-    document.getElementById("subTitle").innerText=t;
-    document.getElementById("sub").style.display="flex";
+
+const data={
+restaurants:[
+{name:"Al Baik",type:"Fast Food",dist:"350m",hours:"24h"},
+{name:"Zamzam Restaurant",type:"Saudi",dist:"200m",hours:"24h"},
+{name:"Turkish Castle",type:"Turkish",dist:"900m",hours:"1PM-1AM"},
+{name:"Hyderabad House",type:"Indian",dist:"1.2km",hours:"11AM-12AM"},
+{name:"Al Tazaj",type:"Chicken",dist:"500m",hours:"10AM-2AM"}
+],
+health:[
+{name:"Ajyad Hospital",type:"Hospital",dist:"1.1km",hours:"24h"},
+{name:"Haram Medical Center",type:"Clinic",dist:"800m",hours:"24h"},
+{name:"Nahdi Pharmacy",type:"Pharmacy",dist:"300m",hours:"24h"},
+{name:"Aldawaa Pharmacy",type:"Pharmacy",dist:"450m",hours:"8AM-12AM"},
+{name:"Red Crescent",type:"Ambulance",dist:"600m",hours:"24h"}
+],
+banks:[
+{name:"Al Rajhi Bank",type:"Bank",dist:"500m",hours:"9AM-5PM"},
+{name:"SNB",type:"Bank",dist:"650m",hours:"9AM-5PM"},
+{name:"ATM Al Rajhi",type:"ATM",dist:"Inside Hotel",hours:"24h"},
+{name:"ATM SNB",type:"ATM",dist:"200m",hours:"24h"},
+{name:"Enjaz Exchange",type:"Exchange",dist:"400m",hours:"9AM-9PM"}
+],
+transport:[
+{name:"Hotel Taxi Stand",type:"Taxi",dist:"0m",hours:"24h"},
+{name:"Haram Bus Stop",type:"Bus",dist:"700m",hours:"24h"},
+{name:"Yelo Car Rental",type:"Car Rental",dist:"1.3km",hours:"8AM-10PM"},
+{name:"Budget Rental",type:"Car Rental",dist:"1.5km",hours:"8AM-10PM"},
+{name:"Uber Zone",type:"Ride Hailing",dist:"300m",hours:"24h"}
+],
+shopping:[
+{name:"Abraj Mall",type:"Mall",dist:"Inside Complex",hours:"10AM-12AM"},
+{name:"Aziziyah Market",type:"Market",dist:"1.8km",hours:"9AM-11PM"},
+{name:"Gift Shops",type:"Souvenirs",dist:"300m",hours:"9AM-12AM"},
+{name:"Gold Market",type:"Gold",dist:"900m",hours:"10AM-10PM"},
+{name:"Danube",type:"Supermarket",dist:"600m",hours:"24h"}
+],
+hotel:[
+{name:"Room Service",type:"Hotel",dist:"—",hours:"24h"},
+{name:"Housekeeping",type:"Hotel",dist:"—",hours:"On Request"},
+{name:"Spa & Wellness",type:"Hotel",dist:"—",hours:"10AM-10PM"},
+{name:"Concierge",type:"Hotel",dist:"—",hours:"24h"},
+{name:"Shuttle Service",type:"Hotel",dist:"—",hours:"Scheduled"}
+],
+holy:[
+{name:"Kaaba",type:"Holy Site",dist:"0m",hours:"Always"},
+{name:"Masaa",type:"Holy Site",dist:"Inside Haram",hours:"Always"},
+{name:"Mount Noor",type:"Historic",dist:"5km",hours:"Daytime"},
+{name:"Mount Thawr",type:"Historic",dist:"6km",hours:"Daytime"},
+{name:"Religious Guidance Point",type:"Guidance",dist:"300m",hours:"24h"}
+]
+};
+
+function openSection(key){
+document.getElementById("overlay").style.display="flex";
+document.getElementById("sectionTitle").innerText=key.toUpperCase();
+const list=document.getElementById("list");
+list.innerHTML="";
+document.getElementById("details").style.display="none";
+
+data[key].forEach(i=>{
+const div=document.createElement("div");
+div.className="item";
+div.innerHTML=`<strong>${i.name}</strong><br>${i.type} – ${i.dist}`;
+div.onclick=()=>showDetails(i);
+list.appendChild(div);
+});
 }
-function closeSub(){
-    document.getElementById("sub").style.display="none";
+
+function showDetails(i){
+const d=document.getElementById("details");
+d.style.display="block";
+d.innerHTML=`
+<h3>${i.name}</h3>
+<p>Type: ${i.type}</p>
+<p>Distance: ${i.dist}</p>
+<p>Hours: ${i.hours}</p>
+<button>📞 Call</button>
+<button>📍 Directions</button>
+`;
+}
+
+function closeOverlay(){
+document.getElementById("overlay").style.display="none";
 }
 </script>
 
