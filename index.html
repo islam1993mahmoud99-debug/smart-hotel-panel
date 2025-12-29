@@ -10,10 +10,17 @@
 <style>
 body{
 margin:0;
-font-family:Segoe UI,Tahoma;
-background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-color:#fff;
+font-family:"Segoe UI",Tahoma;
+background:#f9f9f9;
+color:#333;
 text-align:center;
+}
+
+/* Gold Theme */
+:root{
+--gold:#C9A44C;
+--soft:#ffffff;
+--shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
 .lang{
@@ -22,79 +29,142 @@ top:15px;
 left:15px;
 font-size:22px;
 cursor:pointer;
+color:var(--gold);
 }
 
 header{
-padding:30px 10px 10px;
+padding:30px 10px 15px;
+background:white;
+box-shadow:var(--shadow);
 }
 header h1{margin:5px;font-size:26px}
-header h2{margin:5px;font-weight:300}
-.brand{font-size:32px;font-weight:bold;letter-spacing:2px}
+header h2{margin:5px;font-weight:300;color:#666}
+.brand{font-size:34px;font-weight:bold;letter-spacing:3px;color:var(--gold)}
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-gap:20px;
-padding:30px;
-max-width:1100px;
+grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+gap:25px;
+padding:40px;
+max-width:1200px;
 margin:auto;
 }
 
 .card{
-background:rgba(255,255,255,0.1);
-border-radius:18px;
-padding:25px 10px;
+background:white;
+border-radius:22px;
+padding:30px 10px;
 cursor:pointer;
 transition:.3s;
+box-shadow:var(--shadow);
 }
-.card:hover{transform:scale(1.08)}
-.card i{font-size:34px;margin-bottom:10px}
+.card:hover{
+transform:translateY(-8px) scale(1.05);
+}
+.card i{
+font-size:36px;
+margin-bottom:12px;
+color:var(--gold);
+}
 .card span{font-size:14px}
 
-/* overlay */
+/* Overlay */
 .overlay{
 position:fixed;
 inset:0;
-background:linear-gradient(135deg,#141e30,#243b55);
+background:rgba(255,255,255,0.97);
 display:none;
 flex-direction:column;
 align-items:center;
-justify-content:center;
-padding:20px;
+justify-content:flex-start;
+padding:30px;
+overflow:auto;
 }
 
-.title{font-size:26px;margin-bottom:20px}
+.title{
+font-size:28px;
+color:var(--gold);
+margin-bottom:15px;
+}
+
+.recommend{
+background:#fff8e1;
+border:1px solid var(--gold);
+padding:15px;
+border-radius:16px;
+margin-bottom:20px;
+max-width:700px;
+box-shadow:var(--shadow);
+}
 
 .list{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:15px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
 width:100%;
-max-width:1000px;
+max-width:1100px;
 }
 
 .item{
-background:rgba(255,255,255,0.12);
-border-radius:16px;
-padding:15px;
+background:white;
+border-radius:18px;
+padding:18px;
 cursor:pointer;
+box-shadow:var(--shadow);
 transition:.3s;
 }
-.item:hover{transform:scale(1.05)}
+.item:hover{transform:scale(1.04)}
 
 .details{
-margin-top:20px;
-background:rgba(0,0,0,0.3);
+margin-top:25px;
 padding:20px;
-border-radius:18px;
-width:100%;
+border-radius:20px;
+background:#fff;
+box-shadow:var(--shadow);
 max-width:600px;
 display:none;
 }
 
 .back{
-margin-top:25px;
+margin:30px;
+font-size:18px;
 cursor:pointer;
+color:var(--gold);
+}
+
+/* Ads */
+.ticker{
+position:fixed;
+bottom:80px;
+width:100%;
+background:var(--gold);
+color:white;
+overflow:hidden;
+white-space:nowrap;
+}
+
+.ticker span{
+display:inline-block;
+padding-left:100%;
+animation:scroll 15s linear infinite;
+font-weight:bold;
+}
+
+@keyframes scroll{
+0%{transform:translateX(0)}
+100%{transform:translateX(-100%)}
+}
+
+.video-ad{
+position:fixed;
+bottom:0;
+width:100%;
+height:80px;
+background:black;
+color:white;
+display:flex;
+align-items:center;
+justify-content:center;
 font-size:18px;
 }
 </style>
@@ -111,18 +181,20 @@ font-size:18px;
 </header>
 
 <div class="grid">
-<div class="card" onclick="openSection('restaurants')"><i class="fa-solid fa-utensils"></i><span>مطاعم</span></div>
-<div class="card" onclick="openSection('health')"><i class="fa-solid fa-hospital"></i><span>الصحة</span></div>
-<div class="card" onclick="openSection('banks')"><i class="fa-solid fa-building-columns"></i><span>بنوك وصرافة</span></div>
-<div class="card" onclick="openSection('transport')"><i class="fa-solid fa-taxi"></i><span>مواصلات</span></div>
-<div class="card" onclick="openSection('shopping')"><i class="fa-solid fa-bag-shopping"></i><span>تسوق</span></div>
-<div class="card" onclick="openSection('hotel')"><i class="fa-solid fa-hotel"></i><span>خدمات الفندق</span></div>
-<div class="card" onclick="openSection('holy')"><i class="fa-solid fa-kaaba"></i><span>مزارات مكة</span></div>
+<div class="card" onclick="openSection('restaurants','⭐ عرض اليوم: خصم 20% في مطعم تركي')"><i class="fa-solid fa-utensils"></i><span>مطاعم</span></div>
+<div class="card" onclick="openSection('health','⭐ أقرب صيدلية تعمل 24 ساعة')"><i class="fa-solid fa-hospital"></i><span>الصحة</span></div>
+<div class="card" onclick="openSection('banks','⭐ صراف داخل الفندق')"><i class="fa-solid fa-building-columns"></i><span>بنوك وصرافة</span></div>
+<div class="card" onclick="openSection('transport','⭐ تاكسي متوفر الآن')"><i class="fa-solid fa-taxi"></i><span>مواصلات</span></div>
+<div class="card" onclick="openSection('shopping','⭐ عروض هدايا للحجاج')"><i class="fa-solid fa-bag-shopping"></i><span>تسوق</span></div>
+<div class="card" onclick="openSection('hotel','⭐ سبا الفندق اليوم')"><i class="fa-solid fa-hotel"></i><span>خدمات الفندق</span></div>
+<div class="card" onclick="openSection('holy','⭐ أقرب بوابة للحرم')"><i class="fa-solid fa-kaaba"></i><span>مزارات مكة</span></div>
 </div>
 
 <!-- Overlay -->
 <div class="overlay" id="overlay">
 <div class="title" id="sectionTitle"></div>
+
+<div class="recommend" id="recommend"></div>
 
 <div class="list" id="list"></div>
 
@@ -131,94 +203,26 @@ font-size:18px;
 <div class="back" onclick="closeOverlay()">⬅ رجوع</div>
 </div>
 
+<div class="ticker">
+<span>✨ أعلن هنا | Reach Hotel Guests Instantly | نُزُل Smart Hospitality Interface ✨</span>
+</div>
+
+<div class="video-ad">
+🎬 Video Advertisement Slot
+</div>
+
 <script>
 let ar=true;
-
 function toggleLang(){
 ar=!ar;
 document.getElementById("t1").innerText=ar?"مرحبًا بكم في":"Welcome to";
 document.getElementById("t2").innerText=ar?"فندق فيرمونت برج الساعة":"Fairmont Clock Tower Hotel";
 }
 
-const data={
-restaurants:[
-{name:"Al Baik",type:"Fast Food",dist:"350m",hours:"24h"},
-{name:"Zamzam Restaurant",type:"Saudi",dist:"200m",hours:"24h"},
-{name:"Turkish Castle",type:"Turkish",dist:"900m",hours:"1PM-1AM"},
-{name:"Hyderabad House",type:"Indian",dist:"1.2km",hours:"11AM-12AM"},
-{name:"Al Tazaj",type:"Chicken",dist:"500m",hours:"10AM-2AM"}
-],
-health:[
-{name:"Ajyad Hospital",type:"Hospital",dist:"1.1km",hours:"24h"},
-{name:"Haram Medical Center",type:"Clinic",dist:"800m",hours:"24h"},
-{name:"Nahdi Pharmacy",type:"Pharmacy",dist:"300m",hours:"24h"},
-{name:"Aldawaa Pharmacy",type:"Pharmacy",dist:"450m",hours:"8AM-12AM"},
-{name:"Red Crescent",type:"Ambulance",dist:"600m",hours:"24h"}
-],
-banks:[
-{name:"Al Rajhi Bank",type:"Bank",dist:"500m",hours:"9AM-5PM"},
-{name:"SNB",type:"Bank",dist:"650m",hours:"9AM-5PM"},
-{name:"ATM Al Rajhi",type:"ATM",dist:"Inside Hotel",hours:"24h"},
-{name:"ATM SNB",type:"ATM",dist:"200m",hours:"24h"},
-{name:"Enjaz Exchange",type:"Exchange",dist:"400m",hours:"9AM-9PM"}
-],
-transport:[
-{name:"Hotel Taxi Stand",type:"Taxi",dist:"0m",hours:"24h"},
-{name:"Haram Bus Stop",type:"Bus",dist:"700m",hours:"24h"},
-{name:"Yelo Car Rental",type:"Car Rental",dist:"1.3km",hours:"8AM-10PM"},
-{name:"Budget Rental",type:"Car Rental",dist:"1.5km",hours:"8AM-10PM"},
-{name:"Uber Zone",type:"Ride Hailing",dist:"300m",hours:"24h"}
-],
-shopping:[
-{name:"Abraj Mall",type:"Mall",dist:"Inside Complex",hours:"10AM-12AM"},
-{name:"Aziziyah Market",type:"Market",dist:"1.8km",hours:"9AM-11PM"},
-{name:"Gift Shops",type:"Souvenirs",dist:"300m",hours:"9AM-12AM"},
-{name:"Gold Market",type:"Gold",dist:"900m",hours:"10AM-10PM"},
-{name:"Danube",type:"Supermarket",dist:"600m",hours:"24h"}
-],
-hotel:[
-{name:"Room Service",type:"Hotel",dist:"—",hours:"24h"},
-{name:"Housekeeping",type:"Hotel",dist:"—",hours:"On Request"},
-{name:"Spa & Wellness",type:"Hotel",dist:"—",hours:"10AM-10PM"},
-{name:"Concierge",type:"Hotel",dist:"—",hours:"24h"},
-{name:"Shuttle Service",type:"Hotel",dist:"—",hours:"Scheduled"}
-],
-holy:[
-{name:"Kaaba",type:"Holy Site",dist:"0m",hours:"Always"},
-{name:"Masaa",type:"Holy Site",dist:"Inside Haram",hours:"Always"},
-{name:"Mount Noor",type:"Historic",dist:"5km",hours:"Daytime"},
-{name:"Mount Thawr",type:"Historic",dist:"6km",hours:"Daytime"},
-{name:"Religious Guidance Point",type:"Guidance",dist:"300m",hours:"24h"}
-]
-};
-
-function openSection(key){
+function openSection(title,reco){
 document.getElementById("overlay").style.display="flex";
-document.getElementById("sectionTitle").innerText=key.toUpperCase();
-const list=document.getElementById("list");
-list.innerHTML="";
-document.getElementById("details").style.display="none";
-
-data[key].forEach(i=>{
-const div=document.createElement("div");
-div.className="item";
-div.innerHTML=`<strong>${i.name}</strong><br>${i.type} – ${i.dist}`;
-div.onclick=()=>showDetails(i);
-list.appendChild(div);
-});
-}
-
-function showDetails(i){
-const d=document.getElementById("details");
-d.style.display="block";
-d.innerHTML=`
-<h3>${i.name}</h3>
-<p>Type: ${i.type}</p>
-<p>Distance: ${i.dist}</p>
-<p>Hours: ${i.hours}</p>
-<button>📞 Call</button>
-<button>📍 Directions</button>
-`;
+document.getElementById("sectionTitle").innerText=title;
+document.getElementById("recommend").innerText=reco;
 }
 
 function closeOverlay(){
