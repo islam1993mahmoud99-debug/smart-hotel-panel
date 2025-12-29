@@ -2,88 +2,78 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>نُزُل | Fairmont Clock Tower</title>
+<title>Nuzul | Smart Hospitality Interface</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
-body {
-    margin: 0;
-    font-family: "Segoe UI", Tahoma;
-    background: #f4f4f4;
-    direction: rtl;
+body{
+margin:0;
+font-family:"Segoe UI",Tahoma;
+background:#f4f4f4;
+direction:rtl;
 }
 
-/* ===== Header ===== */
-header {
-    background: linear-gradient(135deg,#c9a14a,#f6e6b8);
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: bold;
+header{
+background:linear-gradient(135deg,#c9a14a,#f6e6b8);
+padding:14px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+font-weight:bold;
 }
 
-header .center {
-    font-size: 18px;
+.brand{font-size:22px;}
+.center{font-size:18px;}
+.lang{cursor:pointer;font-size:20px;}
+
+.container{padding:15px;}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:14px;
 }
 
-header .brand {
-    font-size: 22px;
+.card{
+background:white;
+border-radius:16px;
+padding:18px 10px;
+text-align:center;
+box-shadow:0 6px 15px rgba(0,0,0,.15);
+cursor:pointer;
+transition:.15s;
 }
 
-/* ===== Layout ===== */
-.container {
-    padding: 15px;
+.card:active{transform:scale(.92);}
+
+.hidden{display:none;}
+
+.back{
+background:#c9a14a;
+display:inline-block;
+padding:8px 14px;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer;
+margin-bottom:10px;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 14px;
+.item{
+background:white;
+border-radius:14px;
+padding:14px;
+margin-bottom:10px;
+box-shadow:0 4px 10px rgba(0,0,0,.12);
+cursor:pointer;
 }
 
-.card {
-    background: white;
-    border-radius: 16px;
-    padding: 18px 10px;
-    text-align: center;
-    box-shadow: 0 6px 15px rgba(0,0,0,.15);
-    cursor: pointer;
-    transition: transform .15s ease, box-shadow .15s ease;
-}
+.item:active{transform:scale(.95);}
 
-.card:active {
-    transform: scale(.92);
-    box-shadow: 0 3px 8px rgba(0,0,0,.2);
-}
-
-.hidden { display:none; }
-
-.back {
-    display:inline-block;
-    margin-bottom:10px;
-    background:#c9a14a;
-    padding:8px 14px;
-    border-radius:12px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.item {
-    background:white;
-    border-radius:14px;
-    padding:14px;
-    margin-bottom:10px;
-    box-shadow:0 4px 10px rgba(0,0,0,.12);
-    cursor:pointer;
-    transition:transform .15s ease;
-}
-.item:active { transform:scale(.95); }
-
-.detail {
-    background:white;
-    border-radius:16px;
-    padding:18px;
-    box-shadow:0 4px 15px rgba(0,0,0,.15);
+.detail{
+background:white;
+border-radius:16px;
+padding:18px;
+box-shadow:0 4px 15px rgba(0,0,0,.15);
 }
 </style>
 </head>
@@ -91,84 +81,106 @@ header .brand {
 <body>
 
 <header>
-    <div class="brand">نُزُل</div>
-    <div class="center">برج فيرمونت – برج الساعة</div>
-    <div>🌍</div>
+<div class="brand" id="brand">نُزُل</div>
+<div class="center" id="location">فندق فيرمونت – برج الساعة</div>
+<div class="lang" onclick="toggleLang()">🌍</div>
 </header>
 
 <div class="container">
 
-<!-- ===== Home ===== -->
+<!-- HOME -->
 <div id="home">
-<div class="grid">
-<div class="card" onclick="openList('hospitals')">🏥<br>مستشفيات</div>
-<div class="card" onclick="openList('pharmacy')">💊<br>صيدليات</div>
-<div class="card" onclick="openList('banks')">🏦<br>بنوك</div>
-<div class="card" onclick="openList('atm')">🏧<br>صرافات آلية</div>
-<div class="card" onclick="openList('cars')">🚗<br>تأجير سيارات</div>
-<div class="card" onclick="openList('tourism')">🧳<br>مكاتب سياحة</div>
-<div class="card" onclick="openList('malls')">🛍️<br>مولات</div>
-<div class="card" onclick="openList('barbers')">💈<br>حلاقين</div>
-<div class="card" onclick="openList('bus')">🚌<br>مواقف باصات</div>
-<div class="card" onclick="openList('taxi')">🚕<br>مواقف تاكسي</div>
-<div class="card" onclick="openList('gold')">💍<br>محلات ذهب</div>
-<div class="card" onclick="openList('grocery')">🛒<br>بقالات</div>
-<div class="card" onclick="openList('juice')">🥤<br>محلات عصائر</div>
-<div class="card" onclick="openList('markets')">🏪<br>أسواق</div>
-<div class="card" onclick="openList('gyms')">🏋️<br>نوادي صحية</div>
-<div class="card" onclick="openList('shipping')">📦<br>شحن</div>
-<div class="card" onclick="openList('security')">👮<br>نقطة أمنية</div>
-<div class="card" onclick="openList('guidance')">🕌<br>إرشاد ديني</div>
-<div class="card" onclick="openList('landmarks')">📍<br>مزارات مكة</div>
-</div>
+<div class="grid" id="homeGrid"></div>
 </div>
 
-<!-- ===== List ===== -->
+<!-- LIST -->
 <div id="list" class="hidden">
-<div class="back" onclick="goHome()">⬅️ رجوع</div>
+<div class="back" onclick="goHome()">⬅️ <span id="backText">رجوع</span></div>
 <div id="listContent"></div>
 </div>
 
-<!-- ===== Detail ===== -->
+<!-- DETAIL -->
 <div id="detail" class="hidden">
-<div class="back" onclick="backToList()">⬅️ رجوع</div>
+<div class="back" onclick="backToList()">⬅️ <span id="backText2">رجوع</span></div>
 <div class="detail" id="detailContent"></div>
 </div>
 
 </div>
 
 <script>
-let currentList = [];
+let lang="ar";
+let currentList=[];
 
-const data = {
-hospitals:["مستشفى أجياد","مستشفى النور","مستشفى حراء","مستشفى الملك فيصل","مستشفى العزيزية"],
-pharmacy:["صيدلية النهدي","صيدلية الدواء","صيدلية المتحدة","صيدلية وايتس","صيدلية بوتس"],
-banks:["بنك الراجحي","الأهلي","ساب","الإنماء","الرياض"],
-atm:["ATM الراجحي","ATM الأهلي","ATM ساب","ATM الإنماء","ATM الرياض"],
-cars:["بدجت","هيرتز","أفيس","سيكست","يوروبكار"],
-tourism:["الرحلة المباركة","طيبة للسياحة","زاد المسافر","أيام","روابي"],
-malls:["مول أبراج البيت","مول مكة","مول الضيافة","العزيزية مول","مول الحجاز"],
-barbers:["حلاق الحرم","صالون مكة","القصير","الروقان","الوسام"],
-bus:["موقف الحرم","موقف العزيزية","موقف كدي","موقف جرول","موقف الششة"],
-taxi:["تاكسي الحرم","تاكسي مكة","تاكسي كدي","تاكسي العزيزية","تاكسي الششة"],
-gold:["سوق الذهب","مجوهرات داماس","مجوهرات لازوردي","الزمرد","الماسة"],
-grocery:["بقالة البركة","زاد الخير","الوفاء","السوق الصغير","الركن"],
-juice:["عصائر الفاكهة","سوبر جوس","جوس تايم","عالم العصير","الفريش"],
-markets:["سوق الحجاز","سوق الليل","سوق العزيزية","سوق الحرم","سوق المسفلة"],
-gyms:["نادي وقت اللياقة","نادي صحتي","جولد جيم","Fit Zone","Power Gym"],
-shipping:["سمسا","أرامكس","DHL","زاجل","البريد السعودي"],
-security:["شرطة الحرم","أمن الفندق","نقطة أمن كدي","شرطة مكة","أمن عام"],
-guidance:["إرشاد الحرم","التوعية الدينية","مكتب الفتوى","إرشاد المعتمرين","الدعوة"],
-landmarks:["المسجد الحرام","جبل النور","غار حراء","عرفات","منى"]
+const categories={
+ar:[
+{key:"hotel",icon:"🏨",name:"خدمات الفندق"},
+{key:"hospitals",icon:"🏥",name:"مستشفيات"},
+{key:"pharmacy",icon:"💊",name:"صيدليات"},
+{key:"banks",icon:"🏦",name:"بنوك"},
+{key:"atm",icon:"🏧",name:"صرافات"},
+{key:"cars",icon:"🚗",name:"تأجير سيارات"},
+{key:"tourism",icon:"🧳",name:"مكاتب سياحة"},
+{key:"malls",icon:"🛍️",name:"مولات"},
+{key:"gold",icon:"💍",name:"محلات ذهب"},
+{key:"markets",icon:"🏪",name:"أسواق"},
+{key:"taxi",icon:"🚕",name:"مواقف تاكسي"},
+{key:"bus",icon:"🚌",name:"مواقف باصات"},
+{key:"guidance",icon:"🕌",name:"إرشاد ديني"},
+{key:"landmarks",icon:"📍",name:"مزارات مكة"}
+],
+en:[
+{key:"hotel",icon:"🏨",name:"Hotel Services"},
+{key:"hospitals",icon:"🏥",name:"Hospitals"},
+{key:"pharmacy",icon:"💊",name:"Pharmacies"},
+{key:"banks",icon:"🏦",name:"Banks"},
+{key:"atm",icon:"🏧",name:"ATMs"},
+{key:"cars",icon:"🚗",name:"Car Rental"},
+{key:"tourism",icon:"🧳",name:"Tourism Offices"},
+{key:"malls",icon:"🛍️",name:"Malls"},
+{key:"gold",icon:"💍",name:"Gold Shops"},
+{key:"markets",icon:"🏪",name:"Markets"},
+{key:"taxi",icon:"🚕",name:"Taxi Stands"},
+{key:"bus",icon:"🚌",name:"Bus Stops"},
+{key:"guidance",icon:"🕌",name:"Religious Guidance"},
+{key:"landmarks",icon:"📍",name:"Makkah Landmarks"}
+]
 };
 
-function openList(type){
-currentList = data[type];
+const data={
+hotel:{
+ar:["الاستقبال","خدمة الغرف","مطاعم الفندق","الكونسيرج","السبا","التنظيف","الغسيل","أوقات الصلاة"],
+en:["Reception","Room Service","Hotel Restaurants","Concierge","Spa","Housekeeping","Laundry","Prayer Times"]
+},
+hospitals:{ar:["مستشفى النور","حراء","أجياد","الملك فيصل","العزيزية"],en:["Al Noor Hospital","Hira Hospital","Ajyad Hospital","King Faisal","Aziziyah Hospital"]},
+pharmacy:{ar:["النهدي","الدواء","وايتس","بوتس","المتحدة"],en:["Nahdi","Al-Dawaa","Whites","Boots","United"]},
+banks:{ar:["الراجحي","الأهلي","ساب","الرياض","الإنماء"],en:["Al Rajhi","SNB","SABB","Riyad Bank","Alinma"]},
+atm:{ar:["ATM الراجحي","ATM الأهلي","ATM ساب","ATM الرياض","ATM الإنماء"],en:["Rajhi ATM","SNB ATM","SABB ATM","Riyad ATM","Alinma ATM"]},
+cars:{ar:["هيرتز","بدجت","أفيس","سيكست","يوروبكار"],en:["Hertz","Budget","Avis","Sixt","Europcar"]},
+tourism:{ar:["زاد","طيبة","الرحلة","روابي","أيام"],en:["Zad","Taiba","Journey","Rawabi","Ayyam"]},
+malls:{ar:["أبراج البيت","مول مكة","الضيافة","العزيزية","الحجاز"],en:["Abraj Al Bait","Makkah Mall","Al Diyafa","Aziziyah Mall","Hijaz Mall"]},
+gold:{ar:["داماس","لازوردي","الزمرد","الماسة","سوق الذهب"],en:["Damas","Lazurde","Emerald","Diamond","Gold Market"]},
+markets:{ar:["سوق الحرم","سوق الليل","سوق العزيزية","سوق المسفلة","سوق كدي"],en:["Haram Market","Night Market","Aziziyah Market","Masfalah Market","Kudai Market"]},
+taxi:{ar:["تاكسي الحرم","تاكسي مكة","تاكسي العزيزية","تاكسي كدي","تاكسي الششة"],en:["Haram Taxi","Makkah Taxi","Aziziyah Taxi","Kudai Taxi","Al Shisha Taxi"]},
+bus:{ar:["موقف الحرم","موقف كدي","موقف جرول","موقف العزيزية","موقف الششة"],en:["Haram Bus","Kudai Bus","Jarwal Bus","Aziziyah Bus","Shisha Bus"]},
+guidance:{ar:["إرشاد الحرم","التوعية","الفتوى","الدعوة","خدمة المعتمرين"],en:["Haram Guidance","Awareness","Fatwa Office","Da'wah","Pilgrim Support"]},
+landmarks:{ar:["المسجد الحرام","جبل النور","غار حراء","منى","عرفات"],en:["Al Haram Mosque","Jabal Al Noor","Hira Cave","Mina","Arafat"]}
+};
+
+function renderHome(){
+let html="";
+categories[lang].forEach(c=>{
+html+=`<div class="card" onclick="openList('${c.key}')">${c.icon}<br>${c.name}</div>`;
+});
+document.getElementById("homeGrid").innerHTML=html;
+}
+
+function openList(key){
+currentList=data[key][lang];
 document.getElementById("home").classList.add("hidden");
 document.getElementById("list").classList.remove("hidden");
 let html="";
-currentList.forEach((item,i)=>{
-html+=`<div class="item" onclick="openDetail('${item}')">${item}<br>📍 أقل من 2 كم</div>`;
+currentList.forEach(item=>{
+html+=`<div class="item" onclick="openDetail('${item}')">${item}<br>📍 < 2 km</div>`;
 });
 document.getElementById("listContent").innerHTML=html;
 }
@@ -178,11 +190,9 @@ document.getElementById("list").classList.add("hidden");
 document.getElementById("detail").classList.remove("hidden");
 document.getElementById("detailContent").innerHTML=`
 <h2>${name}</h2>
-<p>📍 المسافة: 0.5 – 2 كم</p>
-<p>⏰ مواعيد العمل: متاحة يوميًا</p>
-<p>📞 رقم التواصل: متوفر عند الطلب</p>
-<p>ℹ️ بيانات توضيحية لعرض الفكرة</p>
-`;
+<p>${lang==="ar"?"المسافة":"Distance"}: 0.5 – 2 km</p>
+<p>${lang==="ar"?"ساعات العمل":"Working Hours"}: 24/7</p>
+<p>${lang==="ar"?"معلومات توضيحية للعرض":"Demo information for presentation"}</p>`;
 }
 
 function goHome(){
@@ -194,6 +204,14 @@ function backToList(){
 document.getElementById("detail").classList.add("hidden");
 document.getElementById("list").classList.remove("hidden");
 }
+
+function toggleLang(){
+lang=lang==="ar"?"en":"ar";
+document.body.dir=lang==="ar"?"rtl":"ltr";
+renderHome();
+}
+
+renderHome();
 </script>
 
 </body>
