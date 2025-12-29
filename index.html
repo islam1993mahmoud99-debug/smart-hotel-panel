@@ -1,236 +1,236 @@
-🔥🔥🔥 IF YOU SEE THIS, THIS IS THE REAL FILE 🔥🔥🔥
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<title>نُزُل | Fairmont Clock Tower</title>
+<title>نُزُل | فندق فيرمونت برج الساعة</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-body{
-margin:0;
-font-family:"Segoe UI",Tahoma;
-background:#f9f9f9;
-color:#333;
-text-align:center;
+body {
+    margin: 0;
+    font-family: "Tahoma", sans-serif;
+    background: #fff;
+    color: #333;
 }
 
-/* Gold Theme */
-:root{
---gold:#C9A44C;
---soft:#ffffff;
---shadow:0 10px 30px rgba(0,0,0,0.08);
+header {
+    background: linear-gradient(90deg, #fff, #f7f2e8);
+    padding: 15px;
+    text-align: center;
+    border-bottom: 2px solid #d4af37;
+    position: relative;
 }
 
-.lang{
-position:fixed;
-top:15px;
-left:15px;
-font-size:22px;
-cursor:pointer;
-color:var(--gold);
+header h1 {
+    margin: 5px;
+    color: #b08d2f;
 }
 
-header{
-padding:30px 10px 15px;
-background:white;
-box-shadow:var(--shadow);
-}
-header h1{margin:5px;font-size:26px}
-header h2{margin:5px;font-weight:300;color:#666}
-.brand{font-size:34px;font-weight:bold;letter-spacing:3px;color:var(--gold)}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
-gap:25px;
-padding:40px;
-max-width:1200px;
-margin:auto;
+header span {
+    font-size: 14px;
+    color: #555;
 }
 
-.card{
-background:white;
-border-radius:22px;
-padding:30px 10px;
-cursor:pointer;
-transition:.3s;
-box-shadow:var(--shadow);
-}
-.card:hover{
-transform:translateY(-8px) scale(1.05);
-}
-.card i{
-font-size:36px;
-margin-bottom:12px;
-color:var(--gold);
-}
-.card span{font-size:14px}
-
-/* Overlay */
-.overlay{
-position:fixed;
-inset:0;
-background:rgba(255,255,255,0.97);
-display:none;
-flex-direction:column;
-align-items:center;
-justify-content:flex-start;
-padding:30px;
-overflow:auto;
+.lang-btn {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    font-size: 20px;
+    cursor: pointer;
 }
 
-.title{
-font-size:28px;
-color:var(--gold);
-margin-bottom:15px;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 15px;
+    padding: 20px;
 }
 
-.recommend{
-background:#fff8e1;
-border:1px solid var(--gold);
-padding:15px;
-border-radius:16px;
-margin-bottom:20px;
-max-width:700px;
-box-shadow:var(--shadow);
+.card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    cursor: pointer;
 }
 
-.list{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:18px;
-width:100%;
-max-width:1100px;
+.card:hover {
+    transform: scale(1.05);
 }
 
-.item{
-background:white;
-border-radius:18px;
-padding:18px;
-cursor:pointer;
-box-shadow:var(--shadow);
-transition:.3s;
-}
-.item:hover{transform:scale(1.04)}
-
-.details{
-margin-top:25px;
-padding:20px;
-border-radius:20px;
-background:#fff;
-box-shadow:var(--shadow);
-max-width:600px;
-display:none;
+.card i {
+    font-size: 28px;
+    color: #d4af37;
+    margin-bottom: 8px;
 }
 
-.back{
-margin:30px;
-font-size:18px;
-cursor:pointer;
-color:var(--gold);
+.section {
+    display: none;
+    padding: 20px;
+}
+
+.back-btn {
+    font-size: 18px;
+    color: #b08d2f;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.item {
+    background: #fff;
+    border-radius: 14px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    animation: fadeIn 0.4s ease;
+}
+
+.item h3 {
+    margin: 0;
+    color: #b08d2f;
+}
+
+.item p {
+    margin: 4px 0;
+    font-size: 14px;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
 }
 
 /* Ads */
-.ticker{
-position:fixed;
-bottom:80px;
-width:100%;
-background:var(--gold);
-color:white;
-overflow:hidden;
-white-space:nowrap;
+.ads {
+    background: #fff7e0;
+    padding: 10px;
+    color: #b08d2f;
+    font-weight: bold;
+    animation: slide 8s linear infinite;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-.ticker span{
-display:inline-block;
-padding-left:100%;
-animation:scroll 15s linear infinite;
-font-weight:bold;
+@keyframes slide {
+    0% {transform: translateX(100%);}
+    100% {transform: translateX(-100%);}
 }
 
-@keyframes scroll{
-0%{transform:translateX(0)}
-100%{transform:translateX(-100%)}
-}
-
-.video-ad{
-position:fixed;
-bottom:0;
-width:100%;
-height:80px;
-background:black;
-color:white;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:18px;
+video {
+    width: 100%;
+    border-top: 2px solid #d4af37;
 }
 </style>
 </head>
 
 <body>
 
-<div class="lang" onclick="toggleLang()">🌍</div>
-
 <header>
-<h1 id="t1">مرحبًا بكم في</h1>
-<h2 id="t2">فندق فيرمونت برج الساعة</h2>
-<div class="brand">نُزُل</div>
+    <div class="lang-btn" onclick="toggleLang()">🌍</div>
+    <h1>مرحبًا بكم في فندق فيرمونت برج الساعة</h1>
+    <span>واجهة نُزُل الذكية للضيافة</span>
 </header>
 
-<div class="grid">
-<div class="card" onclick="openSection('restaurants','⭐ عرض اليوم: خصم 20% في مطعم تركي')"><i class="fa-solid fa-utensils"></i><span>مطاعم</span></div>
-<div class="card" onclick="openSection('health','⭐ أقرب صيدلية تعمل 24 ساعة')"><i class="fa-solid fa-hospital"></i><span>الصحة</span></div>
-<div class="card" onclick="openSection('banks','⭐ صراف داخل الفندق')"><i class="fa-solid fa-building-columns"></i><span>بنوك وصرافة</span></div>
-<div class="card" onclick="openSection('transport','⭐ تاكسي متوفر الآن')"><i class="fa-solid fa-taxi"></i><span>مواصلات</span></div>
-<div class="card" onclick="openSection('shopping','⭐ عروض هدايا للحجاج')"><i class="fa-solid fa-bag-shopping"></i><span>تسوق</span></div>
-<div class="card" onclick="openSection('hotel','⭐ سبا الفندق اليوم')"><i class="fa-solid fa-hotel"></i><span>خدمات الفندق</span></div>
-<div class="card" onclick="openSection('holy','⭐ أقرب بوابة للحرم')"><i class="fa-solid fa-kaaba"></i><span>مزارات مكة</span></div>
+<!-- MAIN GRID -->
+<div id="main" class="grid">
+    <div class="card" onclick="openSection('restaurants')"><i class="fa-solid fa-utensils"></i><div>مطاعم</div></div>
+    <div class="card" onclick="openSection('cafes')"><i class="fa-solid fa-mug-hot"></i><div>كافيهات</div></div>
+    <div class="card" onclick="openSection('pharmacies')"><i class="fa-solid fa-pills"></i><div>صيدليات</div></div>
+    <div class="card" onclick="openSection('hospitals')"><i class="fa-solid fa-hospital"></i><div>مستشفيات</div></div>
+    <div class="card" onclick="openSection('banks')"><i class="fa-solid fa-building-columns"></i><div>بنوك</div></div>
+    <div class="card" onclick="openSection('gold')"><i class="fa-solid fa-ring"></i><div>محلات ذهب</div></div>
+    <div class="card" onclick="openSection('markets')"><i class="fa-solid fa-store"></i><div>بقالات</div></div>
+    <div class="card" onclick="openSection('taxi')"><i class="fa-solid fa-taxi"></i><div>تاكسي</div></div>
+    <div class="card" onclick="openSection('landmarks')"><i class="fa-solid fa-kaaba"></i><div>مزارات مكة</div></div>
+    <div class="card" onclick="openSection('hotel')"><i class="fa-solid fa-hotel"></i><div>خدمات الفندق</div></div>
 </div>
 
-<!-- Overlay -->
-<div class="overlay" id="overlay">
-<div class="title" id="sectionTitle"></div>
+<!-- RESTAURANTS -->
+<div id="restaurants" class="section">
+    <div class="back-btn" onclick="goBack()">⬅ رجوع</div>
 
-<div class="recommend" id="recommend"></div>
+    <div class="item">
+        <h3>مطعم البيك</h3>
+        <p>النوع: وجبات سريعة</p>
+        <p>المسافة: 400 متر</p>
+        <p>العمل: 24 ساعة</p>
+        <p>☎ 920002267</p>
+    </div>
 
-<div class="list" id="list"></div>
+    <div class="item">
+        <h3>مطعم حضرموت</h3>
+        <p>النوع: يمني</p>
+        <p>المسافة: 650 متر</p>
+        <p>العمل: 10ص - 1ص</p>
+        <p>☎ 0551234567</p>
+    </div>
 
-<div class="details" id="details"></div>
+    <div class="item">
+        <h3>مطعم الطازج</h3>
+        <p>النوع: دجاج</p>
+        <p>المسافة: 500 متر</p>
+        <p>العمل: 24 ساعة</p>
+        <p>☎ 0126543210</p>
+    </div>
 
-<div class="back" onclick="closeOverlay()">⬅ رجوع</div>
+    <div class="item">
+        <h3>مطعم خان مندي</h3>
+        <p>النوع: سعودي</p>
+        <p>المسافة: 1 كم</p>
+        <p>العمل: 11ص - 12ص</p>
+        <p>☎ 0509988776</p>
+    </div>
+
+    <div class="item">
+        <h3>مطعم تاج الهند</h3>
+        <p>النوع: هندي</p>
+        <p>المسافة: 1.2 كم</p>
+        <p>العمل: 12ظ - 12ص</p>
+        <p>☎ 0546677889</p>
+    </div>
 </div>
 
-<div class="ticker">
-<span>✨ أعلن هنا | Reach Hotel Guests Instantly | نُزُل Smart Hospitality Interface ✨</span>
+<!-- HOTEL SERVICES -->
+<div id="hotel" class="section">
+    <div class="back-btn" onclick="goBack()">⬅ رجوع</div>
+
+    <div class="item"><h3>خدمة الغرف</h3><p>متاحة 24 ساعة</p></div>
+    <div class="item"><h3>السبا</h3><p>10ص - 10م</p></div>
+    <div class="item"><h3>المطعم الداخلي</h3><p>بوفيه عالمي</p></div>
+    <div class="item"><h3>الكونسيرج</h3><p>مساعدة سياحية</p></div>
+    <div class="item"><h3>النقل</h3><p>حافلات الفندق</p></div>
 </div>
 
-<div class="video-ad">
-🎬 Video Advertisement Slot
+<!-- ADS -->
+<div class="ads">
+🔥 إعلان: خصم 20% في مطعم تاج الهند للحجاج اليوم فقط 🔥
 </div>
+
+<video autoplay muted loop>
+    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+</video>
 
 <script>
-let ar=true;
-function toggleLang(){
-ar=!ar;
-document.getElementById("t1").innerText=ar?"مرحبًا بكم في":"Welcome to";
-document.getElementById("t2").innerText=ar?"فندق فيرمونت برج الساعة":"Fairmont Clock Tower Hotel";
+function openSection(id) {
+    document.getElementById("main").style.display = "none";
+    document.querySelectorAll(".section").forEach(s => s.style.display = "none");
+    document.getElementById(id).style.display = "block";
 }
 
-function openSection(title,reco){
-document.getElementById("overlay").style.display="flex";
-document.getElementById("sectionTitle").innerText=title;
-document.getElementById("recommend").innerText=reco;
+function goBack() {
+    document.querySelectorAll(".section").forEach(s => s.style.display = "none");
+    document.getElementById("main").style.display = "grid";
 }
 
-function closeOverlay(){
-document.getElementById("overlay").style.display="none";
+function toggleLang() {
+    alert("الإنجليزي جاهز – هيتفعل بالكامل في النسخة القادمة");
 }
 </script>
 
 </body>
 </html>
-
