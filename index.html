@@ -2,78 +2,147 @@
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>Nuzul | Smart Hospitality Interface</title>
+<title>نُزُل | Fairmont Clock Tower</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
 <style>
-body{
-margin:0;
-font-family:"Segoe UI",Tahoma;
-background:#f4f4f4;
-direction:rtl;
+body {
+    margin: 0;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+    text-align: center;
+    overflow-x: hidden;
 }
 
-header{
-background:linear-gradient(135deg,#c9a14a,#f6e6b8);
-padding:14px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-font-weight:bold;
+header {
+    padding: 40px 20px 20px;
+    animation: fadeDown 1s ease;
 }
 
-.brand{font-size:22px;}
-.center{font-size:18px;}
-.lang{cursor:pointer;font-size:20px;}
-
-.container{padding:15px;}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:14px;
+header h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
 }
 
-.card{
-background:white;
-border-radius:16px;
-padding:18px 10px;
-text-align:center;
-box-shadow:0 6px 15px rgba(0,0,0,.15);
-cursor:pointer;
-transition:.15s;
+header h2 {
+    font-size: 22px;
+    font-weight: 300;
+    opacity: 0.9;
 }
 
-.card:active{transform:scale(.92);}
-
-.hidden{display:none;}
-
-.back{
-background:#c9a14a;
-display:inline-block;
-padding:8px 14px;
-border-radius:12px;
-font-weight:bold;
-cursor:pointer;
-margin-bottom:10px;
+.brand {
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-top: 10px;
 }
 
-.item{
-background:white;
-border-radius:14px;
-padding:14px;
-margin-bottom:10px;
-box-shadow:0 4px 10px rgba(0,0,0,.12);
-cursor:pointer;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 25px;
+    padding: 40px;
+    max-width: 900px;
+    margin: auto;
 }
 
-.item:active{transform:scale(.95);}
+.card {
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 25px 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeUp 1s ease;
+}
 
-.detail{
-background:white;
-border-radius:16px;
-padding:18px;
-box-shadow:0 4px 15px rgba(0,0,0,.15);
+.card:hover {
+    transform: scale(1.08);
+    background: rgba(255,255,255,0.15);
+}
+
+.card i {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.card span {
+    display: block;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Sub Screen */
+#subScreen {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    animation: fadeIn 0.5s ease;
+}
+
+.sub-title {
+    font-size: 26px;
+    margin-bottom: 30px;
+}
+
+.sub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 800px;
+}
+
+.sub-card {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 18px;
+    transition: 0.3s;
+}
+
+.sub-card:hover {
+    transform: scale(1.05);
+    background: rgba(255,255,255,0.18);
+}
+
+.sub-card i {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.back {
+    margin-top: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.back:hover {
+    opacity: 1;
+}
+
+@keyframes fadeUp {
+    from {opacity: 0; transform: translateY(40px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeDown {
+    from {opacity: 0; transform: translateY(-30px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 </style>
 </head>
@@ -81,137 +150,72 @@ box-shadow:0 4px 15px rgba(0,0,0,.15);
 <body>
 
 <header>
-<div class="brand" id="brand">نُزُل</div>
-<div class="center" id="location">فندق فيرمونت – برج الساعة</div>
-<div class="lang" onclick="toggleLang()">🌍</div>
+    <h1>مرحبًا بكم في</h1>
+    <h2>فندق فيرمونت برج الساعة</h2>
+    <div class="brand">نُزُل</div>
 </header>
 
-<div class="container">
+<div class="grid">
+    <div class="card" onclick="openSection('المطاعم | Restaurants')">
+        <i class="fa-solid fa-utensils"></i>
+        <span>مطاعم</span>
+    </div>
 
-<!-- HOME -->
-<div id="home">
-<div class="grid" id="homeGrid"></div>
+    <div class="card" onclick="openSection('الخدمات الصحية | Health')">
+        <i class="fa-solid fa-hospital"></i>
+        <span>صحة</span>
+    </div>
+
+    <div class="card" onclick="openSection('الخدمات المالية | Finance')">
+        <i class="fa-solid fa-building-columns"></i>
+        <span>بنوك</span>
+    </div>
+
+    <div class="card" onclick="openSection('المواصلات | Transport')">
+        <i class="fa-solid fa-taxi"></i>
+        <span>مواصلات</span>
+    </div>
+
+    <div class="card" onclick="openSection('التسوق | Shopping')">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>تسوق</span>
+    </div>
+
+    <div class="card" onclick="openSection('خدمات الفندق | Hotel Services')">
+        <i class="fa-solid fa-hotel"></i>
+        <span>خدمات الفندق</span>
+    </div>
+
+    <div class="card" onclick="openSection('مزارات مكة | Holy Sites')">
+        <i class="fa-solid fa-kaaba"></i>
+        <span>مزارات مكة</span>
+    </div>
 </div>
 
-<!-- LIST -->
-<div id="list" class="hidden">
-<div class="back" onclick="goHome()">⬅️ <span id="backText">رجوع</span></div>
-<div id="listContent"></div>
-</div>
+<!-- Sub Screen -->
+<div id="subScreen">
+    <div class="sub-title" id="subTitle"></div>
 
-<!-- DETAIL -->
-<div id="detail" class="hidden">
-<div class="back" onclick="backToList()">⬅️ <span id="backText2">رجوع</span></div>
-<div class="detail" id="detailContent"></div>
-</div>
+    <div class="sub-grid">
+        <div class="sub-card"><i class="fa-solid fa-location-dot"></i><div>خدمة 1</div></div>
+        <div class="sub-card"><i class="fa-solid fa-location-dot"></i><div>خدمة 2</div></div>
+        <div class="sub-card"><i class="fa-solid fa-location-dot"></i><div>خدمة 3</div></div>
+        <div class="sub-card"><i class="fa-solid fa-location-dot"></i><div>خدمة 4</div></div>
+        <div class="sub-card"><i class="fa-solid fa-location-dot"></i><div>خدمة 5</div></div>
+    </div>
 
+    <div class="back" onclick="closeSection()">⬅ رجوع</div>
 </div>
 
 <script>
-let lang="ar";
-let currentList=[];
-
-const categories={
-ar:[
-{key:"hotel",icon:"🏨",name:"خدمات الفندق"},
-{key:"hospitals",icon:"🏥",name:"مستشفيات"},
-{key:"pharmacy",icon:"💊",name:"صيدليات"},
-{key:"banks",icon:"🏦",name:"بنوك"},
-{key:"atm",icon:"🏧",name:"صرافات"},
-{key:"cars",icon:"🚗",name:"تأجير سيارات"},
-{key:"tourism",icon:"🧳",name:"مكاتب سياحة"},
-{key:"malls",icon:"🛍️",name:"مولات"},
-{key:"gold",icon:"💍",name:"محلات ذهب"},
-{key:"markets",icon:"🏪",name:"أسواق"},
-{key:"taxi",icon:"🚕",name:"مواقف تاكسي"},
-{key:"bus",icon:"🚌",name:"مواقف باصات"},
-{key:"guidance",icon:"🕌",name:"إرشاد ديني"},
-{key:"landmarks",icon:"📍",name:"مزارات مكة"}
-],
-en:[
-{key:"hotel",icon:"🏨",name:"Hotel Services"},
-{key:"hospitals",icon:"🏥",name:"Hospitals"},
-{key:"pharmacy",icon:"💊",name:"Pharmacies"},
-{key:"banks",icon:"🏦",name:"Banks"},
-{key:"atm",icon:"🏧",name:"ATMs"},
-{key:"cars",icon:"🚗",name:"Car Rental"},
-{key:"tourism",icon:"🧳",name:"Tourism Offices"},
-{key:"malls",icon:"🛍️",name:"Malls"},
-{key:"gold",icon:"💍",name:"Gold Shops"},
-{key:"markets",icon:"🏪",name:"Markets"},
-{key:"taxi",icon:"🚕",name:"Taxi Stands"},
-{key:"bus",icon:"🚌",name:"Bus Stops"},
-{key:"guidance",icon:"🕌",name:"Religious Guidance"},
-{key:"landmarks",icon:"📍",name:"Makkah Landmarks"}
-]
-};
-
-const data={
-hotel:{
-ar:["الاستقبال","خدمة الغرف","مطاعم الفندق","الكونسيرج","السبا","التنظيف","الغسيل","أوقات الصلاة"],
-en:["Reception","Room Service","Hotel Restaurants","Concierge","Spa","Housekeeping","Laundry","Prayer Times"]
-},
-hospitals:{ar:["مستشفى النور","حراء","أجياد","الملك فيصل","العزيزية"],en:["Al Noor Hospital","Hira Hospital","Ajyad Hospital","King Faisal","Aziziyah Hospital"]},
-pharmacy:{ar:["النهدي","الدواء","وايتس","بوتس","المتحدة"],en:["Nahdi","Al-Dawaa","Whites","Boots","United"]},
-banks:{ar:["الراجحي","الأهلي","ساب","الرياض","الإنماء"],en:["Al Rajhi","SNB","SABB","Riyad Bank","Alinma"]},
-atm:{ar:["ATM الراجحي","ATM الأهلي","ATM ساب","ATM الرياض","ATM الإنماء"],en:["Rajhi ATM","SNB ATM","SABB ATM","Riyad ATM","Alinma ATM"]},
-cars:{ar:["هيرتز","بدجت","أفيس","سيكست","يوروبكار"],en:["Hertz","Budget","Avis","Sixt","Europcar"]},
-tourism:{ar:["زاد","طيبة","الرحلة","روابي","أيام"],en:["Zad","Taiba","Journey","Rawabi","Ayyam"]},
-malls:{ar:["أبراج البيت","مول مكة","الضيافة","العزيزية","الحجاز"],en:["Abraj Al Bait","Makkah Mall","Al Diyafa","Aziziyah Mall","Hijaz Mall"]},
-gold:{ar:["داماس","لازوردي","الزمرد","الماسة","سوق الذهب"],en:["Damas","Lazurde","Emerald","Diamond","Gold Market"]},
-markets:{ar:["سوق الحرم","سوق الليل","سوق العزيزية","سوق المسفلة","سوق كدي"],en:["Haram Market","Night Market","Aziziyah Market","Masfalah Market","Kudai Market"]},
-taxi:{ar:["تاكسي الحرم","تاكسي مكة","تاكسي العزيزية","تاكسي كدي","تاكسي الششة"],en:["Haram Taxi","Makkah Taxi","Aziziyah Taxi","Kudai Taxi","Al Shisha Taxi"]},
-bus:{ar:["موقف الحرم","موقف كدي","موقف جرول","موقف العزيزية","موقف الششة"],en:["Haram Bus","Kudai Bus","Jarwal Bus","Aziziyah Bus","Shisha Bus"]},
-guidance:{ar:["إرشاد الحرم","التوعية","الفتوى","الدعوة","خدمة المعتمرين"],en:["Haram Guidance","Awareness","Fatwa Office","Da'wah","Pilgrim Support"]},
-landmarks:{ar:["المسجد الحرام","جبل النور","غار حراء","منى","عرفات"],en:["Al Haram Mosque","Jabal Al Noor","Hira Cave","Mina","Arafat"]}
-};
-
-function renderHome(){
-let html="";
-categories[lang].forEach(c=>{
-html+=`<div class="card" onclick="openList('${c.key}')">${c.icon}<br>${c.name}</div>`;
-});
-document.getElementById("homeGrid").innerHTML=html;
+function openSection(title) {
+    document.getElementById("subTitle").innerText = title;
+    document.getElementById("subScreen").style.display = "flex";
 }
 
-function openList(key){
-currentList=data[key][lang];
-document.getElementById("home").classList.add("hidden");
-document.getElementById("list").classList.remove("hidden");
-let html="";
-currentList.forEach(item=>{
-html+=`<div class="item" onclick="openDetail('${item}')">${item}<br>📍 < 2 km</div>`;
-});
-document.getElementById("listContent").innerHTML=html;
+function closeSection() {
+    document.getElementById("subScreen").style.display = "none";
 }
-
-function openDetail(name){
-document.getElementById("list").classList.add("hidden");
-document.getElementById("detail").classList.remove("hidden");
-document.getElementById("detailContent").innerHTML=`
-<h2>${name}</h2>
-<p>${lang==="ar"?"المسافة":"Distance"}: 0.5 – 2 km</p>
-<p>${lang==="ar"?"ساعات العمل":"Working Hours"}: 24/7</p>
-<p>${lang==="ar"?"معلومات توضيحية للعرض":"Demo information for presentation"}</p>`;
-}
-
-function goHome(){
-document.getElementById("list").classList.add("hidden");
-document.getElementById("home").classList.remove("hidden");
-}
-
-function backToList(){
-document.getElementById("detail").classList.add("hidden");
-document.getElementById("list").classList.remove("hidden");
-}
-
-function toggleLang(){
-lang=lang==="ar"?"en":"ar";
-document.body.dir=lang==="ar"?"rtl":"ltr";
-renderHome();
-}
-
-renderHome();
 </script>
 
 </body>
